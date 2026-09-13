@@ -11,21 +11,23 @@ import static ru.netology.banklogin.data.SQLHelper.cleanAuthCode;
 import static ru.netology.banklogin.data.SQLHelper.cleanDatabase;
 
 public class BankLoginTest {
-   LoginPade loginPade;
-   DataHelper.AuthInfo authInfo = DataHelper.getUserAuthInfoTestData();
+    LoginPade loginPade;
+    DataHelper.AuthInfo authInfo = DataHelper.getUserAuthInfoTestData();
 
-   @AfterAll
+    @AfterAll
     static void tearDownA() {
-       cleanDatabase();
-   }
+        cleanDatabase();
+    }
 
-   @AfterEach
+    @AfterEach
     void tearDown() {
-       cleanAuthCode();
-   }
+        cleanAuthCode();
+    }
 
-   @BeforeEach
-    void setUp() { loginPade = open("http://localhost:9999", LoginPade.class );}
+    @BeforeEach
+    void setUp() {
+        loginPade = open("http://localhost:9999", LoginPade.class);
+    }
 
     @Test
     @DisplayName("Should successfully login to dashboard with exist login and password from sut test data")

@@ -21,7 +21,7 @@ public class SQLHelper {
 
     @SneakyThrows
     public static DataHelper.VerificationCode getVerificationCode() {
-        var codeSQL = "SELECT code FROM auth_code ORDER BY created DESC LIMIT 1";
+        var codeSQL = "SELECT code FROM auth_codes ORDER BY created DESC LIMIT 1";
         try (var conn = getConnection()) {
             return QUERY_RUNNER.query(conn, codeSQL, new BeanHandler<>(DataHelper.VerificationCode.class));
         }
@@ -30,9 +30,9 @@ public class SQLHelper {
     @SneakyThrows
     public static void cleanDatabase() {
         try (var conn = getConnection()) {
-            QUERY_RUNNER.execute(conn, "DELETE FROM aith_code");
+            QUERY_RUNNER.execute(conn, "DELETE FROM auth_codes");
             QUERY_RUNNER.execute(conn, "DELETE FROM card_transactions");
-            QUERY_RUNNER.execute(conn, "DELETE FROM card");
+            QUERY_RUNNER.execute(conn, "DELETE FROM cards");
             QUERY_RUNNER.execute(conn, "DELETE FROM users");
         }
     }
@@ -40,7 +40,7 @@ public class SQLHelper {
     @SneakyThrows
     public static void cleanAuthCode() {
         try (var conn = getConnection()) {
-            QUERY_RUNNER.execute(conn,"DELETE FROM auth_code");
+            QUERY_RUNNER.execute(conn, "DELETE FROM auth_codes");
         }
     }
 

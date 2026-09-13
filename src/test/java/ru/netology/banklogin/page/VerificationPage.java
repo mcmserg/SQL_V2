@@ -12,7 +12,7 @@ public class VerificationPage {
     private final SelenideElement verifyButton = $("[data-test-id='action-verify']");
     private final SelenideElement errorNotification = $("[data-test-id='error-notification'] .notification__content");
 
-    public VerificationPage(){
+    public VerificationPage() {
         codeField.shouldBe(visible);
     }
 
@@ -20,12 +20,12 @@ public class VerificationPage {
         errorNotification.shouldHave(exactText(expectedText)).shouldBe(visible);
     }
 
-    public DashboardPage validVerify(String verificationCode){
+    public DashboardPage validVerify(String verificationCode) {
         verify(verificationCode);
         return new DashboardPage();
     }
 
-    public void verify(String verificationCode){
+    public void verify(String verificationCode) {
         codeField.setValue(verificationCode);
         verifyButton.click();
     }
